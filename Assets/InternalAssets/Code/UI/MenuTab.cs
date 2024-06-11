@@ -20,4 +20,6 @@ public class MenuTab : MonoBehaviour
     {
         gameObject.SetActive(true);
     }
+
+    public virtual void Execute() { }
 }

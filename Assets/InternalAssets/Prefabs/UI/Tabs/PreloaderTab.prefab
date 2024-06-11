@@ -220,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4253933022473708550}
-  - component: {fileID: -4610792233372209187}
+  - component: {fileID: 6591723066102705457}
   - component: {fileID: -728354757739930414}
   m_Layer: 5
   m_Name: PreloaderTab
@@ -249,7 +249,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &-4610792233372209187
+--- !u!114 &6591723066102705457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,10 +258,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7290737594188470865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd2382e6f8a3db4ab951fce1f11d70a, type: 3}
+  m_Script: {fileID: 11500000, guid: d5b042ed2fdd45045bcb1c4edb7c7b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: -728354757739930414}
+  _sceneToLoadName: 
 --- !u!225 &-728354757739930414
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -35,6 +35,7 @@ public class MenuTabsSystem : MonoBehaviour
     {
         foreach (var tab in _tabsArray)
         {
+            if (tab == null) continue;
             OnHideTabs -= tab.Hide;
         }
     }
@@ -78,7 +79,7 @@ public class MenuTabsSystem : MonoBehaviour
         {
             HideAllTabs();
 
-            newTab.transform.position = prevTab.transform.position;
+            newTab.transform.DOMoveY(0, 0);
             newTab.Show();
 
             newTab.CanvasGroup.alpha = 0;
@@ -86,14 +87,15 @@ public class MenuTabsSystem : MonoBehaviour
 
         };
 
-        Tween MoveNextUp = newTab.transform.DOMoveY(chachedY, _transitionDuration);
-        MoveNextUp.SetEase(_transitionEase);
+        Tween MoveNextDown = newTab.transform.DOMoveY(chachedY, _transitionDuration);
+        MoveNextDown.SetEase(_transitionEase);
 
         Sequence sequence = DOTween.Sequence();
 
         if (!_firstLoading)
         {
             sequence
+                .Append(newTab.transform.DOMoveY(-_transitionOffsetY, 0))
                 .Append(MovePreviousDown)
                 .Join(prevTab.CanvasGroup.DOFade(0, _transitionDuration / 2))
                 .AppendCallback(IntermediateCallback);
@@ -102,18 +104,19 @@ public class MenuTabsSystem : MonoBehaviour
         {
             newTab.CanvasGroup.alpha = 0;
             newTab.Show();
-            sequence.Append(newTab.transform.DOMoveY(_transitionOffsetY, 0));
-            
-          
+            sequence.Append(newTab.transform.DOMoveY(-_transitionOffsetY, 0));
+
+
             _firstLoading = false;
         }
 
 
         sequence
-            .Append(MoveNextUp)
+            .Append(MoveNextDown)
             .Join(newTab.CanvasGroup.DOFade(1, _transitionDuration * 1.25f));
 
         sequence.Play();
+        sequence.onComplete = () => { newTab.Execute(); };
     }
 
 

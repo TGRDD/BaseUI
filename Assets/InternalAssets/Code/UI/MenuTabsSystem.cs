@@ -62,7 +62,6 @@ public class MenuTabsSystem : MonoBehaviour
 
     public void ForceOpenTab(string TabName)
     {
-        OnNewTabOpenProccesStarted?.Invoke();
 
         _firstLoading = false;
         SwitchTabs(TabName, out MenuTab prevTab, out MenuTab newTab);
@@ -72,6 +71,7 @@ public class MenuTabsSystem : MonoBehaviour
 
     public void OpenTab(string TabName)
     {
+        OnNewTabOpenProccesStarted?.Invoke();
         SwitchTabs(TabName, out MenuTab prevTab, out MenuTab newTab);
 
         float chachedY = prevTab.transform.position.y;

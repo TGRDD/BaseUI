@@ -26,6 +26,10 @@ public class TabsDevWindow : EditorWindow
 
                 if (GUILayout.Button($"{tab.gameObject.name}"))
                 {
+                    foreach (var tabb in system.TabsArray )
+                    {
+                        tabb.Hide();
+                    }
                     system.ForceOpenTab(tab.name);
                 }
             }

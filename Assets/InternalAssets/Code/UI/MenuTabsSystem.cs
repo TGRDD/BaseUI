@@ -41,6 +41,8 @@ public class MenuTabsSystem : MonoBehaviour
 
     private void Start()
     {
+        HideAllTabs();
+
         _currentTab = FirstTab;
 
         if (_forceFirstTab)

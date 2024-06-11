@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class MenuTabsSystem : MonoBehaviour
 {
+    public static event Action OnNewTabOpenProccesStarted;
+    public static event Action OnNewTabOpenProccesEnded;
+
     public event Action OnHideTabs;
 
     [SerializeField] private MenuTab[] _tabsArray;
@@ -59,6 +62,8 @@ public class MenuTabsSystem : MonoBehaviour
 
     public void ForceOpenTab(string TabName)
     {
+        OnNewTabOpenProccesStarted?.Invoke();
+
         _firstLoading = false;
         SwitchTabs(TabName, out MenuTab prevTab, out MenuTab newTab);
         HideAllTabs();
@@ -116,7 +121,7 @@ public class MenuTabsSystem : MonoBehaviour
             .Join(newTab.CanvasGroup.DOFade(1, _transitionDuration * 1.25f));
 
         sequence.Play();
-        sequence.onComplete = () => { newTab.Execute(); };
+        sequence.onComplete = () => { newTab.Execute(); OnNewTabOpenProccesEnded?.Invoke(); };
     }
 
 

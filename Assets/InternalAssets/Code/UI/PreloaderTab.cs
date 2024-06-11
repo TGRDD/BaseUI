@@ -15,7 +15,7 @@ public class PreloaderTab : MenuTab
 
     public override void Execute()
     {
-        SceneManager.LoadScene(_sceneToLoadName);
+        SceneManager.LoadSceneAsync(_sceneToLoadName, LoadSceneMode.Single);
     }
 
     public void SetSceneToLoad(string sceneToLoadName)
